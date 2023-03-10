@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import CheckBox from '@theme/CheckBox';
 import Icon from '@theme/Icon';
-import { selectActiveHardwareDeviceId } from '@hardwareWallet/store/selectors/hwSelectors';
+import { selectCurrentHWDeviceId } from '@hardwareWallet/store/selectors/hwSelectors';
 import HWManager from "@hardwareWallet/manager/HWManager";
 import styles from './HwDeviceItem.css';
 
 function HwDeviceItem({ hwDevice }) {
-  const activeHardwareDeviceId = useSelector(selectActiveHardwareDeviceId);
+  const activeHardwareDeviceId = useSelector(selectCurrentHWDeviceId);
 
   function onChange() {
     HWManager.selectDevice(hwDevice.deviceId);

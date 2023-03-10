@@ -13,6 +13,10 @@ import { addSearchParamsToUrl } from 'src/utils/searchParams';
 import useHWAccounts from '@hardwareWallet/hooks/useHWAccounts';
 import { useHWStatus } from '@hardwareWallet/hooks/useHWStatus';
 import { DEVICE_STATUS } from '@libs/hwServer/constants';
+import { getIsInsideLiskApp } from '@libs/ledgerHardwareWallet/ledgerLiskAppIPCChannel/ledgerLiskAppClientIPCRequest';
+import { useSelector } from 'react-redux';
+import { selectCurrentHWDevice } from '@hardwareWallet/store/selectors/hwSelectors';
+import { selectCurrentAccount } from '@account/store/selectors';
 import { useAccounts, useCurrentAccount } from '../../hooks';
 import styles from './ManageAccounts.css';
 import AccountRow from '../AccountRow';
@@ -31,6 +35,8 @@ export const ManageAccountsContent = ({
   const [showRemove, setShowRemove] = useState(false);
   const title = customTitle ?? t('Manage accounts');
   const { accounts: hwAccounts } = useHWAccounts();
+  const currentHWDevice = useSelector(selectCurrentHWDevice);
+  const currentAccount = useSelector(selectCurrentAccount);
   const { status } = useHWStatus();
 
   const queryParams = new URLSearchParams(search);
@@ -53,10 +59,26 @@ export const ManageAccountsContent = ({
     [referrer]
   );
 
+  async function checkInside() {
+    try {
+      console.log('111 GET_IS_INSIDE_APP...', { currentAccount, currentHWDevice });
+      if (currentAccount?.hw && currentHWDevice.path) {
+        const isInsideLiskApp = await getIsInsideLiskApp(
+          currentHWDevice.path,
+          currentAccount?.metadata?.accountIndex
+        );
+        console.log('111 connectedDevices', isInsideLiskApp);
+      }
+    } catch (error) {
+      console.log('111 GET_IS_INSIDE_APP error', error);
+    }
+  }
+
   return (
     <div className={`${styles.wrapper} ${className}`}>
       <div className={styles.headerWrapper}>
         <h1 data-testid="manage-title">{showRemove ? t('Choose account') : title}</h1>
+        <button onClick={checkInside}>CHECK IF INSIDE</button>
       </div>
       <Box className={styles.accountListWrapper}>
         <>

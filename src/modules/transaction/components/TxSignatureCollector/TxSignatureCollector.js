@@ -134,26 +134,26 @@ const TxSignatureCollector = ({
     }
   }, [transactions.signedTransaction, transactions.txSignatureError]);
 
-  if (!currentAccount?.metadata?.isHW) {
-    return (
-      <div className={styles.container}>
-        <TertiaryButton className={styles.backButton} onClick={prevStep}>
-          <Icon name="arrowLeftTailed" />
-        </TertiaryButton>
-        <EnterPasswordForm
-          title={t('Please enter your account password to sign this transaction.')}
-          confirmText={confirmText}
-          onEnterPasswordSuccess={onEnterPasswordSuccess}
-          isDisabled={isGettingAuthData || isGettingTxInitiatorAccount}
-        />
-      </div>
-    );
+  if (currentAccount?.hw) {
+    /*    if (status === 'connected') {
+      return <HWConfirm />;
+    }
+    return <HWReconnect />; */
+    return <HWConfirm />;
   }
 
-  if (status !== 'connected') {
-    return <HWReconnect />;
-  }
-
-  return <HWConfirm />;
+  return (
+    <div className={styles.container}>
+      <TertiaryButton className={styles.backButton} onClick={prevStep}>
+        <Icon name="arrowLeftTailed" />
+      </TertiaryButton>
+      <EnterPasswordForm
+        title={t('Please enter your account password to sign this transaction.')}
+        confirmText={confirmText}
+        onEnterPasswordSuccess={onEnterPasswordSuccess}
+        isDisabled={isGettingAuthData || isGettingTxInitiatorAccount}
+      />
+    </div>
+  );
 };
 export default TxSignatureCollector;
