@@ -5,12 +5,12 @@
   "license": "GPL-3.0",
   "productName": "Lisk",
   "description": "Lisk",
-  "homepage": "https://github.com/LiskHQ/lisk-desktop",
-  "bugs": "https://github.com/LiskHQ/lisk-desktop/issues",
+  "homepage": "https://github.com/ManuGowda/lisk-desktop",
+  "bugs": "https://github.com/ManuGowda/lisk-desktop/issues",
   "main": "./setup/react/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LiskHQ/lisk-desktop"
+    "url": "https://github.com/ManuGowda/lisk-desktop"
   },
   "engines": {
     "node": ">=v18.12.0"

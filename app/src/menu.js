@@ -145,7 +145,7 @@ const menu = {
           click: menu.onClickLink.bind(
             null,
             electron,
-            'https://github.com/LiskHQ/lisk-desktop/releases'
+            'https://github.com/ManuGowda/lisk-desktop/releases'
           ),
         },
       ],

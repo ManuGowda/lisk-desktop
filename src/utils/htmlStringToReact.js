@@ -13,7 +13,7 @@ const htmlStringToReact = (html = '') => {
         const props =
           tag === 'a' && /#\d+$/.test(content)
             ? {
-                href: `https://github.com/LiskHQ/lisk-desktop/issues/${content.replace(/\D/g, '')}`,
+                href: `https://github.com/ManuGowda/lisk-desktop/issues/${content.replace(/\D/g, '')}`,
               }
             : {};
         return (
