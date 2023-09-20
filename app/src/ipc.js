@@ -118,6 +118,7 @@ contextBridge.exposeInMainWorld('ipc', {
   },
   [IPC_OPEN_URL]: (func) => {
     ipcRenderer.on(IPC_OPEN_URL, (event, ...args) => {
+      console.log('......IPC_OPEN.....', {event, args});
       func(event, ...args);
     });
   },
