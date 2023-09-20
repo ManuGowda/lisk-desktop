@@ -5,12 +5,12 @@
   "license": "GPL-3.0",
   "productName": "Lisk",
   "description": "Lisk",
-  "homepage": "https://github.com/LiskHQ/lisk-desktop",
-  "bugs": "https://github.com/LiskHQ/lisk-desktop/issues",
+  "homepage": "https://github.com/manugowda/lisk-desktop",
+  "bugs": "https://github.com/manugowda/lisk-desktop/issues",
   "main": "./setup/react/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LiskHQ/lisk-desktop"
+    "url": "https://github.com/manugowda/lisk-desktop"
   },
   "engines": {
     "node": ">=v18.16.1"
@@ -130,6 +130,7 @@
     "crypto-browserify": "^3.12.0",
     "dompurify": "2.4.6",
     "electron-localshortcut": "3.2.1",
+    "electron-log": "4.4.8",
     "electron-store": "8.1.0",
     "express": "4.18.2",
     "express-rate-limit": "6.7.0",
@@ -148,7 +149,7 @@
     "moment": "2.29.4",
     "msw": "1.2.2",
     "node-hid": "2.1.2",
-    "numeral": "git+https://github.com/LiskHQ/Numeral-js.git",
+    "numeral": "git+https://github.com/manugowda/Numeral-js.git",
     "path-browserify": "^1.0.1",
     "playwright": "1.32.1",
     "postcss": "8.4.18",

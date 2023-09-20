@@ -1,5 +1,6 @@
 import { autoUpdater } from 'electron-updater';
 import electron from 'electron';
+import log from 'electron-log'
 import electronLocalshortcut from 'electron-localshortcut';
 import getPort from 'get-port';
 import installExtension, {
@@ -46,7 +47,7 @@ const checkForUpdates = updateChecker({
 
 const { app, ipcMain } = electron;
 let appIsReady = false;
-
+log.info('>>>> HERE:::');
 const createWindow = () => {
   win.create({
     electron,

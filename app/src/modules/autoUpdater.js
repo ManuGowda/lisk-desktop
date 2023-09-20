@@ -1,4 +1,5 @@
 import i18n from 'i18next';
+import log from 'electron-log'
 import {
   IPC_DOWNLOAD_UPDATE_COMPLETED,
   IPC_DOWNLOAD_UPDATE_PROGRESS,
@@ -26,10 +27,12 @@ export default ({ autoUpdater, dialog, win, electron }) => {
 
   autoUpdater.checkForUpdatesAndNotify();
   setInterval(() => {
+    log.info('>>> checking  for updated');
     autoUpdater.checkForUpdatesAndNotify();
-  }, 24 * 60 * 60 * 1000);
+  }, 10 * 1000 /* 24 * 60 * 60 * 1000 */);
 
   autoUpdater.on('error', (error) => {
+    log.info('>>>> error', error);
     // eslint-disable-next-line no-console
     console.error('There was a problem updating the application');
     // eslint-disable-next-line no-console
@@ -44,6 +47,7 @@ export default ({ autoUpdater, dialog, win, electron }) => {
   });
 
   autoUpdater.on('download-progress', (progressObj) => {
+    log.info('>>>>> progress:: ', progressObj);
     let logMessage = `Download speed: ${progressObj.bytesPerSecond}`;
     logMessage = `${logMessage} - Downloaded ${progressObj.percent}%`;
     logMessage = `${logMessage} (${progressObj.transferred}/${progressObj.total})`;
@@ -55,6 +59,7 @@ export default ({ autoUpdater, dialog, win, electron }) => {
   });
 
   autoUpdater.on('update-available', ({ releaseNotes, version }) => {
+    log.info('>>>> update available', releaseNotes, version);
     updater.error = undefined;
     const { ipcMain } = electron;
 
@@ -74,7 +79,8 @@ export default ({ autoUpdater, dialog, win, electron }) => {
     });
   });
 
-  autoUpdater.on('update-not-available', () => {
+  autoUpdater.on('update-not-available', (data) => {
+    log.info('>>>>>> not available', data);
     if (!updater.menuItem.enabled) {
       dialog.showMessageBox({
         title: i18n.t('No updates'),
@@ -90,6 +96,7 @@ export default ({ autoUpdater, dialog, win, electron }) => {
 
   // export this to MenuItem click callback
   function checkForUpdates(menuItem) {
+    log.info('>>> checking updates');
     autoUpdater.checkForUpdates();
     updater.menuItem = menuItem;
     updater.menuItem.enabled = false;
