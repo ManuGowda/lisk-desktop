@@ -27,7 +27,7 @@ export default ({ autoUpdater, dialog, win, electron }) => {
 
   autoUpdater.checkForUpdatesAndNotify();
   setInterval(() => {
-    log.info('>>> checking  for updated');
+    log.info('>>> checking  for updated.... rc.1');
     autoUpdater.checkForUpdatesAndNotify();
   }, 10 * 1000 /* 24 * 60 * 60 * 1000 */);
 
